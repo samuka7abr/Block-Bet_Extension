@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Block Bets",
+    "version": "1.0",
+    "description": "Bloqueie sites de apostas ilegais e ganhe badges por autocontrole!",
+    "permissions": [
+      "storage",
+      "declarativeNetRequest",
+      "declarativeNetRequestFeedback"
+    ],
+    "host_permissions": [
+      "*://*/*" 
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    }
+  }
+  
