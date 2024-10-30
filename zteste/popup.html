@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Bets - Popup</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="tabs">
+        <button id="tab-sites" class="tab-button active">Sites Bloqueados</button>
+        <button id="tab-progress" class="tab-button">Progresso</button>
+    </div>
+
+    <div id="sites-view" class="tab-content active">
+        <h2>Sites Bloqueados</h2>
+        <button id="view-all">Ver Tudo</button>
+        <button id="add-site">Adicionar Site</button>
+        <ul id="blocked-sites-list"></ul>
+    </div>
+
+    <div id="progress-view" class="tab-content">
+        <h2>Progresso na Gamificação</h2>
+        <div id="progress-content"></div>
+    </div>
+
+    <button id="export-list">Exportar Lista</button>
+
+    <script src="popup.js"></script>
+</body>
+</html>
