@@ -1,5 +1,16 @@
-// Lista de sites bloqueados
-const blockedSites = ["facebook.com", "youtube.com", "twitter.com", "bet365.com"];
+// Lista de sites bloqueados 
+let blockedSites = [
+    "superbet.com", 
+    "novibet.com", 
+    "parimatch.com", 
+    "vbets.com", 
+    "sportingbet.com", 
+    "bet365.com", 
+    "sportsbet.io", 
+    "betnacional.com", 
+    "rivalo.com"
+];
+
 
 function isSiteBlocked(url) {
     return blockedSites.some((site) => url.includes(site));

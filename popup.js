@@ -1,52 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const addSiteButton = document.getElementById("add-site");
-    const blockedSitesList = document.getElementById("blocked-sites-list");
+    const downloadButton = document.getElementById("download-blocked-sites");
+    const addButton = document.getElementById("butao");
 
-    const displayBlockedSites = () => {
-        chrome.storage.local.get({ userBlockedSites: [] }, data => {
-            const userBlockedSites = data.userBlockedSites || [];
-            blockedSitesList.innerHTML = "";
+    // Inicializa a lista de sites bloqueados
+    let blockedSites = [
+        "superbet.com", 
+        "novibet.com", 
+        "parimatch.com", 
+        "vbets.com", 
+        "sportingbet.com", 
+        "bet365.com", 
+        "sportsbet.io", 
+        "betnacional.com", 
+        "rivalo.com"
+    ];
 
-            userBlockedSites.forEach(site => {
-                const listItem = document.createElement("li");
-                listItem.textContent = site;
-
-                const removeButton = document.createElement("button");
-                removeButton.textContent = "Remover";
-                removeButton.style.marginLeft = "10px";
-                removeButton.addEventListener("click", () => {
-                    removeSiteFromBlocked(site);
-                });
-
-                listItem.appendChild(removeButton);
-                blockedSitesList.appendChild(listItem);
-            });
-        });
-    };
-
-    // Função para adicionar um site à lista de bloqueios
-    addSiteButton.addEventListener("click", () => {
-        let site = prompt("Digite o site que deseja bloquear (exemplo: example.com):");
-        if (site) {
-            site = site.replace(/^https?:\/\//, "");
-
-            chrome.storage.local.get({ userBlockedSites: [] }, data => {
-                const userBlockedSites = data.userBlockedSites;
-                if (!userBlockedSites.includes(site)) {
-                    userBlockedSites.push(site);
-                    chrome.storage.local.set({ userBlockedSites }, displayBlockedSites);
-                }
-            });
-        }
+    // Função para baixar a lista de sites bloqueados
+    downloadButton.addEventListener("click", () => {
+        const jsonData = JSON.stringify(blockedSites, null, 2);
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'blockedSites.json';
+        a.click();
+        URL.revokeObjectURL(url); // Libera o objeto URL
     });
 
-    // Função para remover um site do armazenamento e atualizar o bloqueio
-    const removeSiteFromBlocked = (site) => {
-        chrome.storage.local.get({ userBlockedSites: [] }, data => {
-            const userBlockedSites = data.userBlockedSites.filter(s => s !== site);
-            chrome.storage.local.set({ userBlockedSites }, displayBlockedSites);
-        });
-    };
-
-    displayBlockedSites(); // Inicializa a lista ao carregar
+    // Função para adicionar um site à lista de bloqueio
+    addButton.addEventListener("click", () => {
+        let newSite = prompt("Digite o site que deseja bloquear (exemplo: example.com):");
+        if (newSite) {
+            // Remove o protocolo, caso o usuário insira
+            newSite = newSite.replace(/^https?:\/\//, "");
+            if (!blockedSites.includes(newSite)) {
+                blockedSites.push(newSite);
+                alert(`Site ${newSite} adicionado à lista de bloqueio.`);
+            } else {
+                alert("Este site já está na lista de bloqueio.");
+            }
+        }
+    });
 });

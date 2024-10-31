@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Block Sites",
+  "name": "Block Bets",
   "version": "1.0",
   "description": "Bloqueia sites específicos com um overlay.",
   "permissions": ["tabs", "scripting"],
