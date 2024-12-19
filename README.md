@@ -24,7 +24,7 @@ Uma extensão de navegador que identifica e bloqueia sites de apostas ilegais, e
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   https://github.com/samuka7abr/Block-Bet_Extension.git
 2. Abra o navegador e acesse as configurações de extensões:
     - No Chrome: chrome://extensions/
     - No Firefox: about:addons
